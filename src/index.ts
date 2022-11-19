@@ -3,21 +3,28 @@ const app: Application = express();
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import { v4 as uuidv4 } from "uuid";
+import cors from "cors";
 import { body, validationResult } from "express-validator";
 
 const PORT = process.env.PORT || 8080;
 const date = new Date();
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
 
+app.use(cors());
 app.use(express.json());
 
 app
   .route("/api/bbs")
-  .get(async (req: Request, res: Response) => {
+  .get(cors(corsOptions), async (req: Request, res: Response) => {
     const messages = await prisma.message.findMany();
     console.log(messages);
     return res.json(messages);
   })
-  .post(async (req: Request, res: Response) => {
+  .post(cors(corsOptions), async (req: Request, res: Response) => {
     await prisma.message.create({
       data: {
         id: uuidv4(),
