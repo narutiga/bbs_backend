@@ -14,17 +14,17 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app
   .route("/api/bbs")
-  .get(cors(corsOptions), async (req: Request, res: Response) => {
+  .get(async (req: Request, res: Response) => {
     const messages = await prisma.message.findMany();
     console.log(messages);
     return res.json(messages);
   })
-  .post(cors(corsOptions), async (req: Request, res: Response) => {
+  .post(async (req: Request, res: Response) => {
     await prisma.message.create({
       data: {
         id: uuidv4(),
