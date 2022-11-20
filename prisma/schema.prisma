@@ -15,7 +15,7 @@ datasource db {
 
 model Message {
   id    String     @id
-  name  String
+  guestName  String
   title  String
-  created_at String
+  posted_at String
 }

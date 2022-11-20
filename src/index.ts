@@ -28,12 +28,12 @@ app
     await prisma.message.create({
       data: {
         id: uuidv4(),
-        name: req.body.name,
         title: req.body.title,
-        created_at: date.toLocaleString("ja"),
+        guestName: req.body.guestName,
+        posted_at: date.toLocaleString("ja"),
       },
     });
-    console.log("post message create");
+    console.log(date.toLocaleString("ja"));
     return res.json();
   });
 
