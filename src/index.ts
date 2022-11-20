@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import { v4 as uuidv4 } from "uuid";
 import cors from "cors";
-import { body, validationResult } from "express-validator";
+import { checkSchema, validationResult } from "express-validator";
 
 const PORT = process.env.PORT || 8080;
 const date = new Date();
@@ -20,7 +20,9 @@ app.use(express.json());
 app
   .route("/api/bbs")
   .get(async (req: Request, res: Response) => {
-    const messages = await prisma.message.findMany();
+    const messages = await prisma.message.findMany({
+      orderBy: { posted_at: "desc" },
+    });
     console.log(messages);
     return res.json(messages);
   })
