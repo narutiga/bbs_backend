@@ -9,7 +9,7 @@ import { checkSchema, validationResult } from "express-validator";
 const PORT = process.env.PORT || 8080;
 const date = new Date();
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://bbs-opal.vercel.app",
   credentials: true,
   optionsSuccessStatus: 200,
 };
@@ -21,7 +21,7 @@ app
   .route("/api/bbs")
   .get(async (req: Request, res: Response) => {
     const messages = await prisma.message.findMany({
-      orderBy: { posted_at: "desc" },
+      orderBy: { createdAt: "desc" },
     });
     console.log(messages);
     return res.json(messages);
@@ -32,10 +32,8 @@ app
         id: uuidv4(),
         title: req.body.title,
         guestName: req.body.guestName,
-        posted_at: date.toLocaleString("ja"),
       },
     });
-    console.log(date.toLocaleString("ja"));
     return res.json();
   });
 

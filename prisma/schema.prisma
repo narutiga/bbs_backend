@@ -17,5 +17,5 @@ model Message {
   id    String     @id
   guestName  String
   title  String
-  posted_at String
+  createdAt DateTime @default(now())
 }
