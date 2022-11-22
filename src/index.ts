@@ -7,7 +7,6 @@ import cors from "cors";
 import { checkSchema, validationResult } from "express-validator";
 
 const PORT = process.env.PORT || 8080;
-const date = new Date();
 const corsOptions = {
   origin: "https://bbs-opal.vercel.app",
   credentials: true,
@@ -23,7 +22,6 @@ app
     const messages = await prisma.message.findMany({
       orderBy: { createdAt: "desc" },
     });
-    console.log(messages);
     return res.json(messages);
   })
   .post(async (req: Request, res: Response) => {
@@ -36,6 +34,24 @@ app
     });
     return res.json();
   });
+
+app.route("/api/bbs/:id").delete(async (req: Request, res: Response) => {
+  const message = await prisma.message.findUnique({
+    where: {
+      id: req.params.id,
+    },
+  });
+
+  if (!message) {
+    return res.json({ error: "message not found" });
+  }
+  await prisma.message.delete({
+    where: {
+      id: req.params.id,
+    },
+  });
+  return res.json();
+});
 
 app.listen(PORT, () => {
   console.log(`server running on ${PORT}`);
