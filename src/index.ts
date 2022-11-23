@@ -33,7 +33,7 @@ app
       },
       guestName: {
         isLength: {
-          options: { min: 1, max: 15 },
+          options: { min: 1, max: 10 },
         },
       },
     }),
