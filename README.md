@@ -1,4 +1,6 @@
-# 練習で作った掲示板用の api です
+# 概要
+
+- Node.js の練習に、簡単な api を作ってみました
 
 # 使用技術
 
@@ -7,6 +9,6 @@
 - PlanetScale
 - Express-validator
 - ESLint, Prettire
-- Jest（勉強中）
+- Jest（勉強中...！）
 - Docker
 - fly.io
