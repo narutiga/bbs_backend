@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "nodemon --watch 'src/**/*.ts' --exec ts-node --files ./src/index.ts"
+    "dev": "nodemon --watch 'src/**/*.ts' --exec ts-node --files ./src/index.ts",
+    "test": "jest"
   },
   "name": "backend",
   "version": "1.0.0",
@@ -31,6 +32,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-validator": "^6.14.2",
+    "jest-mock-extended": "2.0.4",
     "uuid": "^9.0.0"
   }
 }

@@ -25,4 +25,4 @@ USER node
 
 EXPOSE 8080
 
-CMD ["node","index.js"]
+CMD ["node","src/index.js"]
