@@ -9,6 +9,6 @@
 - PlanetScale
 - Express-validator
 - ESLint, Prettire
-- Jest（勉強中...！）
+- Jest
 - Docker
 - fly.io
